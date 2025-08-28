@@ -1,7 +1,7 @@
 console.log("Hello World");
 
-num1 = 2;
-num2 = 3;
+num1 = 5;
+num2 = 5;
 
 sum = num1 + num2;
 
