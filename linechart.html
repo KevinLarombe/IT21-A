@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LineChart</title>
+    <title>Linechart</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>LineChart</h1>
+    <h1>Line Chart</h1>
     <div>
-  <canvas id="Linechart"></canvas>
+        <canvas id="linechart"></canvas>
+    </div>
 
-</div>
 </body>
 <script>
-class Linechart{
+class LineChart{
     constructor(canvasId,dataUrl){
-        this.canvasid = canvasId;
+        this.canvasId = canvasId;
         this.dataUrl = dataUrl;
         this.chart = null;
     }
@@ -34,9 +34,9 @@ class Linechart{
                     label:"Monthly Data",
                     //Data
                     data:data.values,
-                    borderwith:1
-            }]
-        },
+                    borderwidth:1
+                }]
+            },
             options:{
                 scales:{
                     y:{
@@ -50,10 +50,10 @@ class Linechart{
     async fetchData(){
         try{
             const response = await fetch(this.dataUrl);
+            
             if(!response.ok) throw new Error(`Failed to load data: ${response.statusText}`);
 
             const data = await response.json();
-
             return data;
 
         } catch(error){
@@ -63,7 +63,7 @@ class Linechart{
     }
 
     async init(){
-        const data = await  this.fetchData();
+        const data = await this.fetchData();
         if(data){
             this.renderChart(data);
         }
@@ -71,7 +71,7 @@ class Linechart{
 }
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    const chart = new LineChart("linechart", "linedata.json");
+    const chart = new LineChart("linechart","linedata.json");
     chart.init();
 })
 </script>
